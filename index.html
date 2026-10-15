@@ -7,83 +7,112 @@
   <meta name="description" content="Die persönliche Startseite von Sebastian Schnoerr – Geoinformatik, Karten und Entdeckungen.">
   <title>Sebastian Schnoerr — Geoinformatik &amp; Karten</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="page">
     <header class="site-header">
       <a class="wordmark" href="#start">Sebastian Schnoerr</a>
-      <p class="header-note">Geoinformatik 2 · Mainz</p>
+      <div class="header-actions">
+        <p class="header-note">Geoinformatik 2 · Mainz</p>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Zum Nachtmodus wechseln" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+          <span class="theme-toggle-label">Nachtmodus</span>
+        </button>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="Hauptnavigation">
+        <button class="tab is-active" id="tab-about" type="button" role="tab" aria-selected="true" aria-controls="panel-about" tabindex="0">About</button>
+        <button class="tab" id="tab-news" type="button" role="tab" aria-selected="false" aria-controls="panel-news" tabindex="-1">News</button>
+        <button class="tab" id="tab-projects" type="button" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1">Projects</button>
+      </nav>
     </header>
 
     <main id="start">
-      <section class="intro" aria-labelledby="intro-title">
-        <div class="intro-copy">
-          <p class="eyebrow">Hallo, ich bin Sebastian</p>
-          <p>Herzlich Willkommen auf meiner Website.</p>
-          <p>Hier sammle ich Einblicke in meinen Weg, Themen, die mich beschäftigen, und Fundstücke aus der Welt der Karten.</p>
-        </div>
-        <figure class="portrait">
-          <img src="assetsme.jpg" alt="Porträt von Sebastian Schnörr" width="640" height="480">
-          <figcaption>Porträt von Sebastian Schnörr</figcaption>
-        </figure>
-      </section>
+        <section class="tab-panel is-active" id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0">
+          <section class="intro" aria-labelledby="intro-title">
+            <div class="intro-copy">
+              <p class="eyebrow">Hallo, ich bin Sebastian</p>
+              <h1 id="intro-title">Geoinformatik &amp; Karten</h1>
+              <p>Herzlich Willkommen auf meiner Website.</p>
+              <p>Ich studiere Geoinformatik und Vermessung in Mainz. Mich interessieren Karten, räumliche Daten und die Geschichten, die sich damit sichtbar machen lassen.</p>
+            </div>
+            <figure class="portrait">
+              <img src="assetsme.jpg" alt="Porträt von Sebastian Schnörr" width="640" height="480">
+              <figcaption>Porträt von Sebastian Schnörr</figcaption>
+            </figure>
+          </section>
+          <div class="section-heading">
+            <h2 id="stations-title">Mein Weg</h2>
+            <p class="section-aside">Von der Vermessungsausbildung zum Studium der Geoinformatik.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Jahr</th>
+                  <th scope="col">Station</th>
+                  <th scope="col">Ort</th>
+                  <th scope="col">Stichwort</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>2021-2024</td><td>Ausbildung zum Vermessungstechniker</td><td>Ingelheim</td><td><span class="tag">Vermessung</span></td></tr>
+                <tr><td>2024-2024</td><td>Vermessungstechniker</td><td>Ingelheim</td><td><span class="tag">Bauvermessung</span></td></tr>
+                <tr><td>2024-heute</td><td>Studium Geoinformatik und Vermessung</td><td>Mainz</td><td><span class="tag">Studium</span></td></tr>
+                <tr><td>2025-heute</td><td>Gesellschafter</td><td>Mainz</td><td><span class="tag">StartUp</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-      <section class="content-section" aria-labelledby="stations-title">
-        <div class="section-heading">
-          <h2 id="stations-title">Ein paar Stationen</h2>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Jahr</th>
-                <th scope="col">Station</th>
-                <th scope="col">Ort</th>
-                <th scope="col">Stichwort</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>2021-2024</td><td>Ausbildung zum Vermessungstechniker</td><td>Ingelheim</td><td><span class="tag">Vermessung</span></td></tr>
-              <tr><td>2024-2024</td><td>Vermessungstechniker</td><td>Ingelheim</td><td><span class="tag">Bauvermessung</span></td></tr>
-              <tr><td>2024-heute</td><td>Studium Geoinformatik und Vermessung</td><td>Mainz</td><td><span class="tag">Studium</span></td></tr>
-              <tr><td>2025-heute</td><td>Gesellschafter</td><td>Mainz</td><td><span class="tag">StartUp</span></td></tr>              
-            </tbody>
-          </table>
-        </div>
-      </section>
+        <section class="tab-panel" id="panel-news" role="tabpanel" aria-labelledby="tab-news" tabindex="0" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Aktuelles</p>
+              <h2>News</h2>
+            </div>
+            <p class="section-aside">Neuigkeiten aus Ausbildung, Studium und Beruf.</p>
+          </div>
+          <div class="news-list" id="news-list" aria-live="polite" aria-busy="true">
+            <p class="news-status">News werden geladen …</p>
+          </div>
+        </section>
 
-      <section class="content-section" aria-labelledby="gallery-title">
-        <div class="section-heading">
-          <h2 id="gallery-title">Draußen weiterklicken</h2>
-          <p class="section-aside">Drei gute Einstiege in Karten, offene Geodaten und räumliche Werkzeuge.</p>
-        </div>
-        <div class="gallery">
-          <a class="card" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer">
-            <img src="https://images.unsplash.com/photo-1524666041070-9f8765e1137b?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Karte und Kompass auf einer Arbeitsfläche" width="900" height="540" loading="lazy">
-            <div class="card-copy">
-              <h3>OpenStreetMap</h3>
-              <p>Eine freie Weltkarte, die von Menschen überall gemeinsam gestaltet wird.</p>
-              <span class="card-link">Karte erkunden ↗</span>
+        <section class="tab-panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="0" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Ausprobieren &amp; Gestalten</p>
+              <h2>Projects</h2>
             </div>
-          </a>
-          <a class="card" href="https://qgis.org/" target="_blank" rel="noopener noreferrer">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Landschaft mit Bergen im weichen Abendlicht" width="900" height="540" loading="lazy">
-            <div class="card-copy">
-              <h3>QGIS</h3>
-              <p>Leistungsstarke Open-Source-Werkzeuge für Karten und räumliche Analysen.</p>
-              <span class="card-link">Werkzeug kennenlernen ↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gebirgszüge, die sich bis zum Horizont erstrecken" width="900" height="540" loading="lazy">
-            <div class="card-copy">
-              <h3>Natural Earth</h3>
-              <p>Frei verfügbare Kartendaten für Karten in vielen Maßstäben.</p>
-              <span class="card-link">Daten entdecken ↗</span>
-            </div>
-          </a>
-        </div>
-      </section>
+            <p class="section-aside">Fiktive Projektideen als Ausblick auf eigene Web-Maps und Webseiten.</p>
+          </div>
+          <div class="gallery">
+            <article class="card project-card">
+              <div class="project-visual project-visual-routes" aria-hidden="true"><span>49.99° N</span><span class="map-pin">●</span></div>
+              <div class="card-copy">
+                <p class="project-type">Fiktives Web-Map-Konzept</p>
+                <h3>Mainz Grünwege</h3>
+                <p>Eine interaktive Karte mit schattigen Spazierwegen, Parks und ruhigen Plätzen in Mainz.</p>
+              </div>
+            </article>
+            <article class="card project-card">
+              <div class="project-visual project-visual-elevation" aria-hidden="true"><span>Höhenprofil</span><span class="elevation-line"></span></div>
+              <div class="card-copy">
+                <p class="project-type">Fiktives Web-Map-Konzept</p>
+                <h3>Rheinhessen in Höhenlinien</h3>
+                <p>Eine explorative Webkarte, die Geländehöhen und Landschaftsformen der Region erfahrbar macht.</p>
+              </div>
+            </article>
+            <article class="card project-card">
+              <div class="project-visual project-visual-campus" aria-hidden="true"><span>Campus Mainz</span><span class="campus-blocks">▦ ▦ ▦</span></div>
+              <div class="card-copy">
+                <p class="project-type">Fiktive Webseite</p>
+                <h3>GeoCampus</h3>
+                <p>Ein kompakter Campus-Finder mit barrierearmen Wegen, Gebäuden und wichtigen Anlaufstellen.</p>
+              </div>
+            </article>
+          </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -91,5 +120,17 @@
       <p>© <span>2026</span> Sebastian Schnoerr</p>
     </footer>
   </div>
+  <nav class="contact-links" aria-label="Kontakt und externe Profile">
+    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub öffnen" title="GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.92.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.24-5.07-5.52 0-1.22.44-2.22 1.15-3-.12-.29-.5-1.43.11-2.98 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.55.23 2.69.11 2.98.72.78 1.15 1.78 1.15 3.01 0 4.29-2.61 5.23-5.1 5.5.4.35.76 1.02.76 2.06v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn öffnen" title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.42h2.67ZM7 8.25a1.55 1.55 0 1 1 .02-3.1 1.55 1.55 0 0 1-.02 3.1ZM18.33 18h-2.66v-4.18c0-1-.02-2.29-1.4-2.29-1.4 0-1.62 1.1-1.62 2.22V18H9.99V9.42h2.55v1.17h.04a2.8 2.8 0 0 1 2.52-1.39c2.7 0 3.23 1.78 3.23 4.1Z"/>
+      </svg>
+    </a>
+  </nav>
 </body>
 </html>

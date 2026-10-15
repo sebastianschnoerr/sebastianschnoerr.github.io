@@ -1,0 +1,22 @@
+{
+  "news": [
+    {
+      "date": "2025",
+      "category": "Beruf",
+      "title": "Als Gesellschafter in Mainz aktiv",
+      "description": "Seit 2025 bin ich als Gesellschafter an einem Start-up beteiligt und sammle neue unternehmerische Erfahrungen."
+    },
+    {
+      "date": "2024",
+      "category": "Studium",
+      "title": "Studium der Geoinformatik begonnen",
+      "description": "In Mainz studiere ich Geoinformatik und Vermessung und vertiefe mein Wissen rund um räumliche Daten und Karten."
+    },
+    {
+      "date": "2024",
+      "category": "Beruf",
+      "title": "Ausbildung erfolgreich abgeschlossen",
+      "description": "Nach meiner Ausbildung zum Vermessungstechniker war ich in Ingelheim in der Bauvermessung tätig."
+    }
+  ]
+}
