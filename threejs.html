@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a26">
+  <title>Schottlandroute — Three.js</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #101a26; color: #edf4f7; font: 16px system-ui, sans-serif; }
+    main { min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1fr) 310px; }
+    #globe { min-height: 100vh; position: relative; }
+    #globe canvas { display: block; width: 100%; height: 100%; }
+    aside { padding: 30px 24px; background: #172431; }
+    h1 { margin: 8px 0 10px; font-size: 1.8rem; }
+    .eyebrow { color: #91c8a9; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; }
+    #status { min-height: 3.5em; color: #c5d3dc; line-height: 1.5; }
+    ol { padding-left: 24px; }
+    li { margin: 10px 0; }
+    button { border: 1px solid #547184; border-radius: 6px; padding: 8px 12px;
+      color: inherit; background: #203443; cursor: pointer; font: inherit; }
+    button:hover, button[aria-pressed="true"] { background: #285c49; }
+    #reset { margin-top: 10px; }
+    .hint { color: #a9bac5; font-size: .9rem; line-height: 1.5; }
+    @media (max-width: 760px) {
+      main { grid-template-columns: 1fr; }
+      #globe { min-height: 58vh; }
+      aside { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="globe" aria-label="Drehbarer Globus mit animierter Schottlandroute"></section>
+    <aside>
+      <p class="eyebrow">Three.js · animierte Route</p>
+      <h1>Schottland entdecken</h1>
+      <p id="status" role="status">Route wird geladen …</p>
+      <h2>Stationen</h2>
+      <ol id="stations"></ol>
+      <button id="reset" type="button">Ansicht zurücksetzen</button>
+      <p class="hint">Globus ziehen zum Drehen, scrollen zum Zoomen. Die Route läuft automatisch ab.</p>
+    </aside>
+  </main>
+  <script type="module">
+    import * as THREE from "three";
+    import {OrbitControls} from "three/addons/controls/OrbitControls.js";
+
+    const routeData = {"type":"FeatureCollection","name":"Schottlandroute","features":[{"type":"Feature","properties":{"name":"Reiseroute durch Schottland","kind":"route"},"geometry":{"type":"LineString","coordinates":[[-3.1883,55.9533],[-3.9369,56.1165],[-5.1052,56.8198],[-4.2247,57.4778]]}},{"type":"Feature","properties":{"name":"Edinburgh","order":1,"description":"Ausgangspunkt der Route."},"geometry":{"type":"Point","coordinates":[-3.1883,55.9533]}},{"type":"Feature","properties":{"name":"Stirling","order":2,"description":"Zweite Station der Route."},"geometry":{"type":"Point","coordinates":[-3.9369,56.1165]}},{"type":"Feature","properties":{"name":"Fort William","order":3,"description":"Dritte Station der Route."},"geometry":{"type":"Point","coordinates":[-5.1052,56.8198]}},{"type":"Feature","properties":{"name":"Inverness","order":4,"description":"Endpunkt der Route."},"geometry":{"type":"Point","coordinates":[-4.2247,57.4778]}}]};
+    const stationData = [{"name":"Edinburgh","order":1,"description":"Ausgangspunkt der Route.","coordinates":[-3.1883,55.9533]},{"name":"Stirling","order":2,"description":"Zweite Station der Route.","coordinates":[-3.9369,56.1165]},{"name":"Fort William","order":3,"description":"Dritte Station der Route.","coordinates":[-5.1052,56.8198]},{"name":"Inverness","order":4,"description":"Endpunkt der Route.","coordinates":[-4.2247,57.4778]}];
+    const container = document.getElementById("globe");
+    const status = document.getElementById("status");
+    const radius = 2;
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#101a26");
+
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    const renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.minDistance = 3.2;
+    controls.maxDistance = 10;
+
+    scene.add(new THREE.HemisphereLight("#d8efff", "#15202d", 2.1));
+    const sun = new THREE.DirectionalLight("#ffffff", 2.5);
+    sun.position.set(-4, 3, 5);
+    scene.add(sun);
+
+    const globe = new THREE.Mesh(
+      new THREE.SphereGeometry(radius, 96, 64),
+      new THREE.MeshStandardMaterial({color: "#17334a", roughness: 0.86})
+    );
+    scene.add(globe);
+    new THREE.TextureLoader().load(
+      "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+      (texture) => {
+        texture.colorSpace = THREE.SRGBColorSpace;
+        globe.material.map = texture;
+        globe.material.color.set("#ffffff");
+        globe.material.needsUpdate = true;
+      },
+      undefined,
+      (error) => console.error("Die Erdtextur konnte nicht geladen werden:", error)
+    );
+
+    const toVector = ([longitude, latitude], featureRadius = radius) => {
+      const phi = THREE.MathUtils.degToRad(90 - latitude);
+      const theta = THREE.MathUtils.degToRad(longitude + 180);
+      return new THREE.Vector3(
+        -featureRadius * Math.sin(phi) * Math.cos(theta),
+        featureRadius * Math.cos(phi),
+        featureRadius * Math.sin(phi) * Math.sin(theta)
+      );
+    };
+
+    const coords = routeData.features.find((feature) =>
+      feature.geometry.type === "LineString"
+    )?.geometry.coordinates;
+    if (!coords || coords.length < 2 || stationData.length === 0) {
+      throw new Error("Die Routendaten enthalten keine gültige Route oder Stationen.");
+    }
+
+    camera.position.copy(toVector([-4.5, 56.5], radius * 3.3));
+    controls.target.set(0, 0, 0);
+
+    const routePoints = [];
+    for (let segment = 0; segment < coords.length - 1; segment += 1) {
+      const start = toVector(coords[segment]).normalize();
+      const end = toVector(coords[segment + 1]).normalize();
+      const rotation = new THREE.Quaternion().setFromUnitVectors(start, end);
+      for (let step = 0; step <= 40; step += 1) {
+        const fraction = step / 40;
+        const interpolation = new THREE.Quaternion().identity().slerp(rotation, fraction);
+        routePoints.push(
+          start.clone().applyQuaternion(interpolation).multiplyScalar(radius * 1.012)
+        );
+      }
+    }
+
+    const fullRoute = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(routePoints),
+      new THREE.LineBasicMaterial({color: "#647b86", transparent: true, opacity: 0.65})
+    );
+    scene.add(fullRoute);
+    const animatedRoute = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(routePoints),
+      new THREE.LineBasicMaterial({color: "#f3c969"})
+    );
+    animatedRoute.geometry.setDrawRange(0, 1);
+    scene.add(animatedRoute);
+    const traveler = new THREE.Mesh(
+      new THREE.SphereGeometry(0.075, 20, 16),
+      new THREE.MeshStandardMaterial({color: "#ff785f", emissive: "#8c2a20"})
+    );
+    scene.add(traveler);
+
+    for (const station of stationData) {
+      const marker = new THREE.Mesh(
+        new THREE.SphereGeometry(0.045, 16, 12),
+        new THREE.MeshStandardMaterial({color: "#91c8a9", emissive: "#285c49"})
+      );
+      marker.position.copy(toVector(station.coordinates, radius * 1.025));
+      scene.add(marker);
+
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = station.name;
+      button.setAttribute("aria-pressed", "false");
+      button.addEventListener("click", () => {
+        status.textContent = `${station.order}. ${station.name} — ${station.description}`;
+        controls.target.copy(marker.position.clone().normalize().multiplyScalar(radius));
+        document.querySelectorAll("#stations button").forEach((element) =>
+          element.setAttribute("aria-pressed", String(element === button))
+        );
+      });
+      item.appendChild(button);
+      document.getElementById("stations").appendChild(item);
+    }
+
+    status.textContent = "Die Route von Edinburgh nach Inverness wird animiert.";
+    document.getElementById("reset").addEventListener("click", () => {
+      camera.position.copy(toVector([-4.5, 56.5], radius * 3.3));
+      controls.target.set(0, 0, 0);
+      controls.update();
+      status.textContent = "Die Route von Edinburgh nach Inverness wird animiert.";
+      document.querySelectorAll("#stations button").forEach((button) =>
+        button.setAttribute("aria-pressed", "false")
+      );
+    });
+
+    function resize() {
+      const {clientWidth, clientHeight} = container;
+      camera.aspect = clientWidth / clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(clientWidth, clientHeight);
+    }
+    new ResizeObserver(resize).observe(container);
+    resize();
+
+    const clock = new THREE.Clock();
+    const duration = 24;
+    renderer.setAnimationLoop(() => {
+      const progress = (clock.getElapsedTime() % duration) / duration;
+      const traveled = progress * (routePoints.length - 1);
+      const index = Math.min(Math.floor(traveled), routePoints.length - 2);
+      const fraction = traveled - index;
+      traveler.position.copy(routePoints[index]).lerp(routePoints[index + 1], fraction);
+      animatedRoute.geometry.setDrawRange(0, Math.max(2, Math.ceil(traveled) + 1));
+      controls.update();
+      renderer.render(scene, camera);
+    });
+  </script>
+</body>
+</html>

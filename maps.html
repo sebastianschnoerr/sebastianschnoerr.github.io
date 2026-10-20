@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="Interaktive Karten mit Folium, Kepler.gl und Three.js.">
+  <title>Meine Karten — Sebastian Schnoerr</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="wordmark" href="index.html">Sebastian Schnoerr</a>
+      <div class="header-actions">
+        <p class="header-note">Geoinformatik 2 · Mainz</p>
+        <a class="maps-link" href="index.html">Zur Startseite</a>
+        <a class="maps-link" href="buildings.html">3D-Gebäude</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Zum Nachtmodus wechseln" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+          <span class="theme-toggle-label">Nachtmodus</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="maps-main">
+      <section class="maps-intro" aria-labelledby="maps-title">
+        <p class="eyebrow">Karten &amp; Geodaten</p>
+        <h1 id="maps-title">Meine Karten</h1>
+        <p>Erkunde die animierte Schottlandroute mit Kepler.gl und Three.js sowie die vier interaktiven Karten aus den Folium-Übungen. Alle Karten lassen sich hier ansehen oder separat öffnen.</p>
+      </section>
+
+      <section class="map-gallery" aria-label="Interaktive Karten">
+        <figure class="map-card">
+          <iframe src="kepler.html" title="Kepler.gl-Karte mit animierter Schottlandroute und Stationen" loading="lazy"></iframe>
+          <figcaption>
+            <h2>Animierte Route – Kepler.gl</h2>
+            <p>Interaktive Karte mit animiertem Trip-Layer von Edinburgh über Stirling und Fort William bis Inverness.</p>
+            <a href="kepler.html" target="_blank" rel="noopener noreferrer">Karte separat öffnen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure class="map-card">
+          <iframe src="threejs.html" title="Three.js-Globus mit animierter Schottlandroute" loading="lazy"></iframe>
+          <figcaption>
+            <h2>3D-Globus – Three.js</h2>
+            <p>Drehbarer Erdglobus mit automatisch animierter Route und auswählbaren Stationen.</p>
+            <a href="threejs.html" target="_blank" rel="noopener noreferrer">Globus separat öffnen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure class="map-card">
+          <iframe src="map_1_basiskarte.html" title="Basiskarte mit Zentrum Europa" loading="lazy"></iframe>
+          <figcaption>
+            <h2>1. Basiskarte – Europa</h2>
+            <p>Eine Übersichtskarte mit Mittelpunkt in Europa und zwei auswählbaren Hintergrundkarten.</p>
+            <a href="map_1_basiskarte.html" target="_blank" rel="noopener noreferrer">Karte separat öffnen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure class="map-card">
+          <iframe src="map_2_punkte.html" title="Punktkarte mit Markierungen für Mainz, Paris und Edinburgh" loading="lazy"></iframe>
+          <figcaption>
+            <h2>2. Orte und Punkte</h2>
+            <p>Markierungen für Mainz, Paris und Edinburgh mit Beschriftungen und Pop-ups.</p>
+            <a href="map_2_punkte.html" target="_blank" rel="noopener noreferrer">Karte separat öffnen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure class="map-card">
+          <iframe src="map_3_reiseroute.html" title="Reiseroute durch Schottland mit vier Stationen" loading="lazy"></iframe>
+          <figcaption>
+            <h2>3. Reiseroute – Schottland</h2>
+            <p>Eine Linie verbindet Edinburgh, Stirling, Fort William und Inverness; Stationen sind markiert.</p>
+            <a href="map_3_reiseroute.html" target="_blank" rel="noopener noreferrer">Karte separat öffnen ↗</a>
+          </figcaption>
+        </figure>
+
+        <figure class="map-card">
+          <iframe src="map_4_flaechen_online.html" title="Weltkarte mit hervorgehobenen besuchten Ländern" loading="lazy"></iframe>
+          <figcaption>
+            <h2>4. Besuchte Länder</h2>
+            <p>Eine interaktive Weltkarte, auf der Deutschland, Frankreich und das Vereinigte Königreich hervorgehoben sind.</p>
+            <a href="map_4_flaechen_online.html" target="_blank" rel="noopener noreferrer">Karte separat öffnen ↗</a>
+          </figcaption>
+        </figure>
+      </section>
+    <footer class="site-footer">
+      <p><a href="index.html">Zurück zur Startseite</a></p>
+      <p>© <span>2026</span> Sebastian Schnoerr</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_897ebf2b565535079d634a54d208bbff {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_897ebf2b565535079d634a54d208bbff" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_897ebf2b565535079d634a54d208bbff = L.map(
+                "map_897ebf2b565535079d634a54d208bbff",
+                {
+                    center: [40.0, 45.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_af4b60cffde060fe377064b75f439984 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri \u2014 Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_af4b60cffde060fe377064b75f439984.addTo(map_897ebf2b565535079d634a54d208bbff);
+        
+    
+            var marker_d4bdbc972e62f9f0ab6728d9d15d2a13 = L.marker(
+                [49.9929, 8.2473],
+                {
+}
+            ).addTo(map_897ebf2b565535079d634a54d208bbff);
+        
+    
+            var icon_a82390bf8f71dce2e392ead96b701c36 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "map-marker",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_64fe94eee6b6749f7e61e45283a8585c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3b93592f35a58997f489fb38366e1136 = $(`<div id="html_3b93592f35a58997f489fb38366e1136" style="width: 100.0%; height: 100.0%;"><b>Mainz</b><br>Mein Studienort.</div>`)[0];
+                popup_64fe94eee6b6749f7e61e45283a8585c.setContent(html_3b93592f35a58997f489fb38366e1136);
+            
+        
+
+        marker_d4bdbc972e62f9f0ab6728d9d15d2a13.bindPopup(popup_64fe94eee6b6749f7e61e45283a8585c)
+        ;
+
+        
+    
+    
+            marker_d4bdbc972e62f9f0ab6728d9d15d2a13.bindTooltip(
+                `<div>
+                     Mainz
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d4bdbc972e62f9f0ab6728d9d15d2a13.setIcon(icon_a82390bf8f71dce2e392ead96b701c36);
+            
+    
+            var marker_76862496814e46ef75210bf06f54c02a = L.marker(
+                [48.8566, 2.3522],
+                {
+}
+            ).addTo(map_897ebf2b565535079d634a54d208bbff);
+        
+    
+            var icon_dd31c0dba1ec74e28f4d762c4b75407c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "camera",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_803a65ddf8f8bb74f2d528d5a7c68deb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3fc51b817936e89ff68cd3c678465b2c = $(`<div id="html_3fc51b817936e89ff68cd3c678465b2c" style="width: 100.0%; height: 100.0%;"><b>Paris</b><br>Ein Besuch in Frankreich.</div>`)[0];
+                popup_803a65ddf8f8bb74f2d528d5a7c68deb.setContent(html_3fc51b817936e89ff68cd3c678465b2c);
+            
+        
+
+        marker_76862496814e46ef75210bf06f54c02a.bindPopup(popup_803a65ddf8f8bb74f2d528d5a7c68deb)
+        ;
+
+        
+    
+    
+            marker_76862496814e46ef75210bf06f54c02a.bindTooltip(
+                `<div>
+                     Paris
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_76862496814e46ef75210bf06f54c02a.setIcon(icon_dd31c0dba1ec74e28f4d762c4b75407c);
+            
+    
+            var marker_437aeb7d94522899b4b820066a544ff3 = L.marker(
+                [55.9533, -3.1883],
+                {
+}
+            ).addTo(map_897ebf2b565535079d634a54d208bbff);
+        
+    
+            var icon_2256c947e11118b45e50a45ba1ea86b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9108cf19531291263707dccb7104e428 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e6ac58cb337cf8910a7767157fa452e7 = $(`<div id="html_e6ac58cb337cf8910a7767157fa452e7" style="width: 100.0%; height: 100.0%;"><b>Edinburgh</b><br>Eine Station in Schottland.</div>`)[0];
+                popup_9108cf19531291263707dccb7104e428.setContent(html_e6ac58cb337cf8910a7767157fa452e7);
+            
+        
+
+        marker_437aeb7d94522899b4b820066a544ff3.bindPopup(popup_9108cf19531291263707dccb7104e428)
+        ;
+
+        
+    
+    
+            marker_437aeb7d94522899b4b820066a544ff3.bindTooltip(
+                `<div>
+                     Edinburgh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_437aeb7d94522899b4b820066a544ff3.setIcon(icon_2256c947e11118b45e50a45ba1ea86b1);
+            
+    
+            map_897ebf2b565535079d634a54d208bbff.fitBounds(
+                [[49.9929, 8.2473], [48.8566, 2.3522], [55.9533, -3.1883]],
+                {"padding": [20, 20]}
+            );
+        
+    
+            var layer_control_b5f71a66fa33f2273a17302f16d311c1_layers = {
+                base_layers : {
+                    "Esri World Imagery" : tile_layer_af4b60cffde060fe377064b75f439984,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_b5f71a66fa33f2273a17302f16d311c1 = L.control.layers(
+                layer_control_b5f71a66fa33f2273a17302f16d311c1_layers.base_layers,
+                layer_control_b5f71a66fa33f2273a17302f16d311c1_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_897ebf2b565535079d634a54d208bbff);
+
+        
+</script>
+</html>

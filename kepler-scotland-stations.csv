@@ -1,0 +1,5 @@
+name,order,point_latitude,point_longitude,category,description
+Edinburgh,1,55.9533,-3.1883,Start,Ausgangspunkt der Route
+Stirling,2,56.1165,-3.9369,Station,Zweite Station der Route
+Fort William,3,56.8198,-5.1052,Station,Dritte Station der Route
+Inverness,4,57.4778,-4.2247,Ziel,Endpunkt der Route

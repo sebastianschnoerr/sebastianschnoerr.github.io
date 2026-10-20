@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "name": "Schottlandroute",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Reiseroute durch Schottland",
+        "kind": "route"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-3.1883, 55.9533],
+          [-3.9369, 56.1165],
+          [-5.1052, 56.8198],
+          [-4.2247, 57.4778]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Edinburgh",
+        "order": 1,
+        "description": "Ausgangspunkt der Route."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.1883, 55.9533]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stirling",
+        "order": 2,
+        "description": "Zweite Station der Route."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.9369, 56.1165]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fort William",
+        "order": 3,
+        "description": "Dritte Station der Route."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-5.1052, 56.8198]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Inverness",
+        "order": 4,
+        "description": "Endpunkt der Route."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.2247, 57.4778]
+      }
+    }
+  ]
+}

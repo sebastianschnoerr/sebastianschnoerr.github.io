@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "name": "Schottlandroute fuer Kepler.gl",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Schottlandroute",
+        "description": "Animierte Reiseroute Edinburgh–Stirling–Fort William–Inverness"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-3.1883, 55.9533, 0, 1760000000],
+          [-3.9369, 56.1165, 0, 1760003600],
+          [-5.1052, 56.8198, 0, 1760007200],
+          [-4.2247, 57.4778, 0, 1760010800]
+        ]
+      }
+    }
+  ]
+}

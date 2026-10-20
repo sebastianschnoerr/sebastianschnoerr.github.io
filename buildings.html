@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="Interaktive 3D-Gebäudekarte auf Basis von basemap.de und LoD2-Gebäudedaten.">
+  <title>3D-Gebäudekarte — Sebastian Schnoerr</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="buildings-map.js" defer></script>
+</head>
+<body class="building-view">
+  <main id="cesiumContainer" aria-label="Interaktive 3D-Karte der Gebäude in Köln"></main>
+  <a class="maps-link building-home-link" href="index.html">Zur Startseite</a>
+  <button class="theme-toggle building-theme-toggle" id="theme-toggle" type="button" aria-label="Zum Nachtmodus wechseln" aria-pressed="false">
+    <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+    <span class="theme-toggle-label">Nachtmodus</span>
+  </button>
+  <aside class="building-info" id="info" aria-live="polite" aria-label="Gebäudeinformationen">
+    Klicken Sie auf ein Gebäude, um sich dessen Attribute anzeigen zu lassen.
+  </aside>
+</body>
+</html>
+

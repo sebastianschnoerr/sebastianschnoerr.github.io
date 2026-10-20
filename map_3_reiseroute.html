@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_932be8e1b0aad790e18de0fb0194722b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_932be8e1b0aad790e18de0fb0194722b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_932be8e1b0aad790e18de0fb0194722b = L.map(
+                "map_932be8e1b0aad790e18de0fb0194722b",
+                {
+                    center: [56.5, -4.5],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_102416ec8123b38da51acb58917fdab3 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri \u2014 Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_102416ec8123b38da51acb58917fdab3.addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+            var poly_line_d296d39293306f9b238a472282d2a1f8 = L.polyline(
+                [[55.9533, -3.1883], [56.1165, -3.9369], [56.8198, -5.1052], [57.4778, -4.2247]],
+                {"bubblingMouseEvents": true, "color": "#285c49", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#285c49", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+            poly_line_d296d39293306f9b238a472282d2a1f8.bindTooltip(
+                `<div>
+                     Reiseroute durch Schottland
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c5a822e764cfc486bffb2b9c3c42d528 = L.marker(
+                [55.9533, -3.1883],
+                {
+}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+            var div_icon_69b02cd10d5b71f4b59c02e1d0d3cb5b = L.divIcon({
+  "html": "\u003cdiv style=\"background:#285c49;color:white;border:2px solid white;border-radius:50%;width:30px;height:30px;line-height:26px;text-align:center;font-weight:bold\"\u003e1\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+            marker_c5a822e764cfc486bffb2b9c3c42d528.bindTooltip(
+                `<div>
+                     1. Edinburgh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c5a822e764cfc486bffb2b9c3c42d528.setIcon(div_icon_69b02cd10d5b71f4b59c02e1d0d3cb5b);
+            
+    
+            var circle_marker_1de14f78ac60a545078c438393acb9d9 = L.circleMarker(
+                [55.9533, -3.1883],
+                {"bubblingMouseEvents": true, "color": "#285c49", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#91c8a9", "fillOpacity": 0.25, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 2}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+        var popup_ba1e03f90ae99b6cb50bdd77d5bee4d8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f5c3ec07eee273108b9f683a836851dc = $(`<div id="html_f5c3ec07eee273108b9f683a836851dc" style="width: 100.0%; height: 100.0%;"><b>1. Edinburgh</b><br>Station der Schottland-Reise.</div>`)[0];
+                popup_ba1e03f90ae99b6cb50bdd77d5bee4d8.setContent(html_f5c3ec07eee273108b9f683a836851dc);
+            
+        
+
+        circle_marker_1de14f78ac60a545078c438393acb9d9.bindPopup(popup_ba1e03f90ae99b6cb50bdd77d5bee4d8)
+        ;
+
+        
+    
+    
+            circle_marker_1de14f78ac60a545078c438393acb9d9.bindTooltip(
+                `<div>
+                     Edinburgh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_8f524ad819db1db6ce533ce2a22a54d5 = L.marker(
+                [56.1165, -3.9369],
+                {
+}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+            var div_icon_4e0166d430d3f1606deaba33e499f2c8 = L.divIcon({
+  "html": "\u003cdiv style=\"background:#285c49;color:white;border:2px solid white;border-radius:50%;width:30px;height:30px;line-height:26px;text-align:center;font-weight:bold\"\u003e2\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+            marker_8f524ad819db1db6ce533ce2a22a54d5.bindTooltip(
+                `<div>
+                     2. Stirling
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f524ad819db1db6ce533ce2a22a54d5.setIcon(div_icon_4e0166d430d3f1606deaba33e499f2c8);
+            
+    
+            var circle_marker_2fb9917294a2e75ea0c5347dd18fa6d6 = L.circleMarker(
+                [56.1165, -3.9369],
+                {"bubblingMouseEvents": true, "color": "#285c49", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#91c8a9", "fillOpacity": 0.25, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 2}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+        var popup_7a71077a92ca4d81f2d890ac8b7afa36 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_87d90cc895f85a4ab8ce808c1b0114e4 = $(`<div id="html_87d90cc895f85a4ab8ce808c1b0114e4" style="width: 100.0%; height: 100.0%;"><b>2. Stirling</b><br>Station der Schottland-Reise.</div>`)[0];
+                popup_7a71077a92ca4d81f2d890ac8b7afa36.setContent(html_87d90cc895f85a4ab8ce808c1b0114e4);
+            
+        
+
+        circle_marker_2fb9917294a2e75ea0c5347dd18fa6d6.bindPopup(popup_7a71077a92ca4d81f2d890ac8b7afa36)
+        ;
+
+        
+    
+    
+            circle_marker_2fb9917294a2e75ea0c5347dd18fa6d6.bindTooltip(
+                `<div>
+                     Stirling
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_188767520a56b611b4c46bc329ef2955 = L.marker(
+                [56.8198, -5.1052],
+                {
+}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+            var div_icon_7cf53d0ceea94c4cc4e994a7961e8487 = L.divIcon({
+  "html": "\u003cdiv style=\"background:#285c49;color:white;border:2px solid white;border-radius:50%;width:30px;height:30px;line-height:26px;text-align:center;font-weight:bold\"\u003e3\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+            marker_188767520a56b611b4c46bc329ef2955.bindTooltip(
+                `<div>
+                     3. Fort William
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_188767520a56b611b4c46bc329ef2955.setIcon(div_icon_7cf53d0ceea94c4cc4e994a7961e8487);
+            
+    
+            var circle_marker_7875080fbfc341577cc4ea080df1be59 = L.circleMarker(
+                [56.8198, -5.1052],
+                {"bubblingMouseEvents": true, "color": "#285c49", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#91c8a9", "fillOpacity": 0.25, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 2}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+        var popup_a24cafde24f473b26e9722f0226ad806 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f92c88a4e757b8be4f3c1a4092efceb5 = $(`<div id="html_f92c88a4e757b8be4f3c1a4092efceb5" style="width: 100.0%; height: 100.0%;"><b>3. Fort William</b><br>Station der Schottland-Reise.</div>`)[0];
+                popup_a24cafde24f473b26e9722f0226ad806.setContent(html_f92c88a4e757b8be4f3c1a4092efceb5);
+            
+        
+
+        circle_marker_7875080fbfc341577cc4ea080df1be59.bindPopup(popup_a24cafde24f473b26e9722f0226ad806)
+        ;
+
+        
+    
+    
+            circle_marker_7875080fbfc341577cc4ea080df1be59.bindTooltip(
+                `<div>
+                     Fort William
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2e8579af339d930a6e1d54641d7e9246 = L.marker(
+                [57.4778, -4.2247],
+                {
+}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+            var div_icon_042410a873cf398b021c5c66e17b3700 = L.divIcon({
+  "html": "\u003cdiv style=\"background:#285c49;color:white;border:2px solid white;border-radius:50%;width:30px;height:30px;line-height:26px;text-align:center;font-weight:bold\"\u003e4\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+            marker_2e8579af339d930a6e1d54641d7e9246.bindTooltip(
+                `<div>
+                     4. Inverness
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2e8579af339d930a6e1d54641d7e9246.setIcon(div_icon_042410a873cf398b021c5c66e17b3700);
+            
+    
+            var circle_marker_6fcc42c1efa9e5f86bc85145e5dccb77 = L.circleMarker(
+                [57.4778, -4.2247],
+                {"bubblingMouseEvents": true, "color": "#285c49", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#91c8a9", "fillOpacity": 0.25, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 22, "stroke": true, "weight": 2}
+            ).addTo(map_932be8e1b0aad790e18de0fb0194722b);
+        
+    
+        var popup_5d502356389fa0a448439b31513bfab4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_77cabcdd848ce28198e57c11d932b4dd = $(`<div id="html_77cabcdd848ce28198e57c11d932b4dd" style="width: 100.0%; height: 100.0%;"><b>4. Inverness</b><br>Station der Schottland-Reise.</div>`)[0];
+                popup_5d502356389fa0a448439b31513bfab4.setContent(html_77cabcdd848ce28198e57c11d932b4dd);
+            
+        
+
+        circle_marker_6fcc42c1efa9e5f86bc85145e5dccb77.bindPopup(popup_5d502356389fa0a448439b31513bfab4)
+        ;
+
+        
+    
+    
+            circle_marker_6fcc42c1efa9e5f86bc85145e5dccb77.bindTooltip(
+                `<div>
+                     Inverness
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

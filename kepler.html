@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schottlandroute — Kepler.gl</title>
+  <link rel="stylesheet" href="https://d1a3f4spazzrp4.cloudfront.net/kepler.gl/uber-fonts/4.0.0/superfine.css">
+  <link rel="stylesheet" href="https://unpkg.com/kepler.gl@3.3.0-alpha.6/umd/keplergl.min.css">
+  <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4/dist/maplibre-gl.css">
+  <style>
+    html, body, #app { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    #loading { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center;
+      background: #101820; color: white; font: 16px system-ui, sans-serif; }
+    #loading[hidden] { display: none; }
+  </style>
+  <script>window.esmsInitOptions = {shimMode: true};</script>
+  <script src="https://unpkg.com/es-module-shims@2.8.1/dist/es-module-shims.js"
+    crossorigin="anonymous"></script>
+  <script type="importmap-shim">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19.1.0",
+        "react/jsx-runtime": "https://esm.sh/react@19.1.0/jsx-runtime",
+        "react-dom": "https://esm.sh/react-dom@19.1.0?external=react",
+        "react-dom/client": "https://esm.sh/react-dom@19.1.0/client?external=react",
+        "redux": "https://esm.sh/redux@5.0.1",
+        "react-redux": "https://esm.sh/react-redux@9.3.0?external=react,react-dom,redux",
+        "styled-components": "https://esm.sh/styled-components@6.1.19?external=react,react-dom"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="loading" role="status">Kepler.gl-Karte wird geladen …</div>
+  <script type="module-shim">
+    import * as React from "react";
+    import * as ReactDOM from "react-dom";
+    import {createRoot} from "react-dom/client";
+    import * as Redux from "redux";
+    import * as ReactRedux from "react-redux";
+    import * as StyledComponents from "styled-components";
+
+    window.React = React.default || React;
+    window.ReactDOM = ReactDOM.default || ReactDOM;
+    window.Redux = Redux.default || Redux;
+    window.ReactRedux = ReactRedux.default || ReactRedux;
+    window.styled = Object.assign(StyledComponents.default, StyledComponents);
+
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.crossOrigin = "anonymous";
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Kepler.gl konnte nicht geladen werden: ${src}`));
+        document.head.appendChild(script);
+      });
+    }
+
+    const routeData = {"type":"FeatureCollection","name":"Schottlandroute fuer Kepler.gl","features":[{"type":"Feature","properties":{"name":"Schottlandroute","description":"Animierte Reiseroute Edinburgh–Stirling–Fort William–Inverness"},"geometry":{"type":"LineString","coordinates":[[-3.1883,55.9533,0,1760000000],[-3.9369,56.1165,0,1760003600],[-5.1052,56.8198,0,1760007200],[-4.2247,57.4778,0,1760010800]]}}]};
+    const stationsCsv = "name,order,point_latitude,point_longitude,category,description\nEdinburgh,1,55.9533,-3.1883,Start,Ausgangspunkt der Route\nStirling,2,56.1165,-3.9369,Station,Zweite Station der Route\nFort William,3,56.8198,-5.1052,Station,Dritte Station der Route\nInverness,4,57.4778,-4.2247,Ziel,Endpunkt der Route\n";
+    const mapConfig = {"version":"v1","config":{"visState":{"layers":[{"id":"route-layer","type":"trip","config":{"dataId":"scotland-trip","columnMode":"geojson","label":"Animierte Schottlandroute","color":[243,201,105],"columns":{"geojson":"_geojson"}}},{"id":"station-layer","type":"point","config":{"dataId":"scotland-stations","label":"Stationen","color":[255,120,95],"columns":{"lat":"point_latitude","lng":"point_longitude"},"isVisible":true}}],"animationConfig":{"currentTime":1760010800000,"speed":1},"layerBlending":"normal"},"mapState":{"latitude":56.5,"longitude":-4.5,"zoom":6,"bearing":0,"pitch":0},"mapStyle":{"styleType":"positron"}}};
+
+    loadScript("https://unpkg.com/kepler.gl@3.3.0-alpha.6/umd/keplergl.min.js")
+      .then(() => {
+        const reducers = Redux.combineReducers({
+          keplerGl: KeplerGl.keplerGlReducer.initialState({
+            uiState: {readOnly: false, currentModal: null}
+          })
+        });
+        const middleware = KeplerGl.enhanceReduxMiddleware([]);
+        const store = Redux.legacy_createStore(
+          reducers,
+          {},
+          Redux.applyMiddleware(...middleware)
+        );
+
+        function App() {
+          const [size, setSize] = React.useState({
+            width: window.innerWidth,
+            height: window.innerHeight
+          });
+          React.useEffect(() => {
+            const resize = () => setSize({
+              width: window.innerWidth,
+              height: window.innerHeight
+            });
+            window.addEventListener("resize", resize);
+            return () => window.removeEventListener("resize", resize);
+          }, []);
+          return React.createElement(KeplerGl.KeplerGl, {
+            id: "scotland",
+            width: size.width,
+            height: size.height,
+            mapboxApiAccessToken: "pk.xxx.yyy"
+          });
+        }
+
+        const root = createRoot(document.getElementById("app"));
+        root.render(React.createElement(
+          ReactRedux.Provider,
+          {store},
+          React.createElement(App)
+        ));
+
+        const datasets = [
+          {
+            info: {id: "scotland-trip", label: "Schottlandroute"},
+            data: KeplerGl.processGeojson(routeData)
+          },
+          {
+            info: {id: "scotland-stations", label: "Stationen"},
+            data: KeplerGl.processCsvData(stationsCsv)
+          }
+        ];
+        window.setTimeout(() => {
+          store.dispatch(KeplerGl.addDataToMap({
+            datasets,
+            config: mapConfig,
+            options: {centerMap: true}
+          }));
+          document.getElementById("loading").hidden = true;
+        }, 500);
+      })
+      .catch((error) => {
+        console.error(error);
+        document.getElementById("loading").textContent =
+          "Karte konnte nicht geladen werden. Bitte Internetverbindung und Browserkonsole prüfen.";
+      });
+  </script>
+</body>
+</html>

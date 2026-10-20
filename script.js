@@ -69,6 +69,9 @@ tabs.forEach((tab, index) => {
 
 async function loadNews() {
   const newsList = document.querySelector("#news-list");
+  if (!newsList) {
+    return;
+  }
 
   try {
     const response = await fetch(new URL("news.json", document.baseURI));
@@ -134,4 +137,6 @@ async function loadNews() {
 }
 
 loadNews();
-activateTab(tabs[0]);
+if (tabs.length > 0) {
+  activateTab(tabs[0]);
+}
